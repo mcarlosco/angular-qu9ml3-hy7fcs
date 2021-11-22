@@ -1,0 +1,17 @@
+<h2>Product Details</h2>
+
+<div *ngIf="product">
+  <h3>{{ product.name }}</h3>
+  <h4>{{ product.price | currency }}</h4>
+  <p>{{ product.description }}</p>
+  <ng-container
+    *ngIf="wasAddedToCart(product); then wasAdded; else wasNotAdded"
+  >
+  </ng-container>
+  <ng-template #wasAdded>
+    <button (click)="removeFromCart(product)">Remove From Cart</button>
+  </ng-template>
+  <ng-template #wasNotAdded>
+    <button (click)="addToCart(product)">Add To Cart</button>
+  </ng-template>
+</div>
